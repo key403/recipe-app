@@ -1,20 +1,19 @@
 import React, { useState } from "react";
 import styles from "../../styles/RecipePage.module.scss";
-import Link from 'next/link'
-import {AiOutlineSearch} from "react-icons/ai"
+import Link from "next/link";
+import { AiOutlineSearch } from "react-icons/ai";
 
 const pro = ({ meal }) => {
-
-  const [search, setSearch] = useState("")
+  const [search, setSearch] = useState("");
   const ingredients = [];
 
-  const handleChange = (e)=> {
-    setSearch(e.target.value)
-  }
+  const handleChange = (e) => {
+    setSearch(e.target.value);
+  };
   // INGREDIENTS FOR THE RECIPE
   for (let i = 1; i <= 20; i++) {
     let ingredient = meal["strIngredient" + i];
-    
+
     if (ingredient) {
       ingredients.push(`${ingredient}`);
     } else {
@@ -42,8 +41,17 @@ const pro = ({ meal }) => {
         </Link>
 
         <div className={styles.searchBoxContainer}>
-          <input type="text" placeholder='Search...' className={styles.searchBox} onChange={handleChange}/>
-          <Link id='search' className={styles.searchButton} href={search?`/search/${search}`: "/"}>
+          <input
+            type="text"
+            placeholder="Search..."
+            className={styles.searchBox}
+            onChange={handleChange}
+          />
+          <Link
+            id="search"
+            className={styles.searchButton}
+            href={search ? `/search/${search}` : "/"}
+          >
             <AiOutlineSearch />
           </Link>
         </div>
@@ -69,7 +77,6 @@ const pro = ({ meal }) => {
               </div>
             ))}
           </div>
-
         </div>
       </div>
 
