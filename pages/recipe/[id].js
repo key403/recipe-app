@@ -3,7 +3,7 @@ import styles from "../../styles/RecipePage.module.scss";
 import Link from "next/link";
 import { AiOutlineSearch } from "react-icons/ai";
 
-const pro = ({ meal }) => {
+const Recipe = ({ meal }) => {
   const [search, setSearch] = useState("");
   const ingredients = [];
 
@@ -96,7 +96,7 @@ const pro = ({ meal }) => {
   );
 };
 
-export default pro;
+export default Recipe;
 
 export async function getServerSideProps({ params: { id } }) {
   const res = await fetch(
