@@ -1,0 +1,42 @@
+.container {
+  max-width: 1700px;
+  padding: 2rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+.searchBoxContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.searchBox {
+  padding: 1rem;
+  width: 500px;
+  border-radius: 50px;
+  outline: none;
+  border: none;
+}
+.searchButton {
+  border: none;
+  font-size: 2rem;
+  color: white;
+  background-color: transparent;
+  cursor: pointer;
+}
+.meals {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 4rem;
+
+  img {
+    width: 100%;
+  }
+}
+.meals__img {
+  width: 200px;
+}
+.meal__title {
+  text-align: center;
+}
