@@ -82,3 +82,17 @@
     text-align: center;
   }
 }
+
+@media screen and (max-width:576px) {
+  .searchBox {
+    padding: .75rem;
+    width: 370px;
+  } 
+}
+
+@media screen and (max-width:376px) {
+  .searchBox {
+    padding: .5rem;
+    width: 250px;
+  } 
+}

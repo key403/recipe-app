@@ -1,32 +1,11 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styles from "../../styles/Categories.module.scss"
 import Link from 'next/link'
-import {AiOutlineSearch} from "react-icons/ai"
 
 const Categories = ({meals}) => {
 
-  
-  const [search, setSearch] = useState("")
-
-  const handleChange = (e)=> {
-    setSearch(e.target.value)
-  }
-
   return (
     <div className={styles.container}>
-      <div className={styles.header__flexContainer}>
-        <Link href="/">
-          <h1>Recipe App</h1>
-        </Link>
-
-        <div className={styles.searchBoxContainer}>
-          <input type="text" placeholder='Search...' className={styles.searchBox} onChange={handleChange}/>
-          <Link id='search' className={styles.searchButton} href={search?`/search/${search}`: "/"}>
-            <AiOutlineSearch />
-          </Link>
-        </div>
-      </div>
-
       <div>
         <ul className={styles.meals}>
           {meals?.map((meal)=>(

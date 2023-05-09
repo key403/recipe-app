@@ -1,15 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from "../../styles/RecipePage.module.scss";
-import Link from "next/link";
-import { AiOutlineSearch } from "react-icons/ai";
 
-const Recipe = ({ meal }) => {
-  const [search, setSearch] = useState("");
+const Recipe = (data) => {
+  if (!data.meal) return
+
+  const meal = data.meal[0]
   const ingredients = [];
 
-  const handleChange = (e) => {
-    setSearch(e.target.value);
-  };
   // INGREDIENTS FOR THE RECIPE
   for (let i = 1; i <= 20; i++) {
     let ingredient = meal["strIngredient" + i];
@@ -35,28 +32,6 @@ const Recipe = ({ meal }) => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.header__flexContainer}>
-        <Link href="/">
-          <h1>Recipe App</h1>
-        </Link>
-
-        <div className={styles.searchBoxContainer}>
-          <input
-            type="text"
-            placeholder="Search..."
-            className={styles.searchBox}
-            onChange={handleChange}
-          />
-          <Link
-            id="search"
-            className={styles.searchButton}
-            href={search ? `/search/${search}` : "/"}
-          >
-            <AiOutlineSearch />
-          </Link>
-        </div>
-      </div>
-
       <div className={styles.flex}>
         <div className={styles.meal__img}>
           <h2>{meal.strMeal}</h2>
@@ -82,12 +57,15 @@ const Recipe = ({ meal }) => {
 
       <div className={styles.instructions}>
         {instructions.length ? (
-          instructions.map((step, i) => (
-            <div key={i}>
-              <h4>STEP {i + 1}</h4>
-              <p>{step}</p>
-            </div>
-          ))
+          <>
+            <h2>Instructions</h2>
+            {instructions.map((step, i) => (
+              <div key={i}>
+                <h4>STEP {i + 1}</h4>
+                <p>{step}</p>
+              </div>
+            ))}
+          </>
         ) : (
           <p>{meal.strInstructions}</p>
         )}
@@ -103,11 +81,9 @@ export async function getServerSideProps({ params: { id } }) {
     `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`
   );
   const data = await res.json();
-  const meal = data.meals[0];
+  const meal = data.meals
 
   return {
-    props: {
-      meal,
-    },
+    props: {meal},
   };
 }

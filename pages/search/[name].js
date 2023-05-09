@@ -1,28 +1,13 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styles from "../../styles/Search.module.scss"
-import {AiOutlineSearch} from "react-icons/ai"
 import Link from 'next/link'
 
 const searchAPI = "https://www.themealdb.com/api/json/v1/1/search.php?s="
 
 const Search = ({meals}) => {
 
-  console.log(meals)
-  const [search, setSearch] = useState("")
-
-  const handleChange = (e)=> {
-    setSearch(e.target.value)
-  }
-
   return (
     <div className={styles.container}>
-      <div className={styles.searchBoxContainer}>
-        <input type="text" placeholder='Search...' className={styles.searchBox} onChange={handleChange}/>
-        
-        <Link id='search' className={styles.searchButton} href={search?`/search/${search}`: "/"}>
-          <AiOutlineSearch />
-        </Link>
-      </div>
 
       <div>
         <ul className={styles.meals}>
